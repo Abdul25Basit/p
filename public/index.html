@@ -1,261 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Calculator</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .calculator-container {
-            max-width: 400px;
-            margin: 50px auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        .calculator-header {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .calculator-body {
-            background-color: white;
-            padding: 20px;
-        }
-        .form-control {
-            height: 60px;
-            font-size: 24px;
-            text-align: right;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s;
-        }
-        .form-control:focus {
-            border-color: #2575fc;
-            box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.25);
-        }
-        .btn-calc {
-            height: 60px;
-            font-size: 20px;
-            border-radius: 8px;
-            margin: 5px 0;
-            transition: all 0.2s;
-        }
-        .btn-operator {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-        .btn-equals {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            border: none;
-        }
-        .history-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .history-item:hover {
-            background-color: #f8f9fa;
-        }
-        .history-container {
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdul Basit | Software Developer</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPLH2FT7KH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JPLH2FT7KH');
+  </script>
+  <style>
+    :root {
+      --primary-color: #6c63ff;
+      --dark-color: #2d3748;
+      --light-color: #f8f9fa;
+      --accent-color: #4fd1c5;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 5rem auto;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      color: var(--dark-color);
+      font-weight: 500;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-color);
+    }
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    .btn-outline-primary {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    .btn-outline-primary:hover {
+      background-color: var(--primary-color);
+    }
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      color: #5048e5;
+      text-decoration: underline;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+    #visitor-info {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #718096;
+      padding: 0.5rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+    .project-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .project-list li {
+      margin-bottom: 1rem;
+    }
+    .project-list a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(108, 99, 255, 0.1);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .project-list a:hover {
+      background: rgba(108, 99, 255, 0.2);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+    .contact-info {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .container {
+        margin: 2rem auto;
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="calculator-container">
-            <div class="calculator-header">
-                <h2>Scientific Calculator</h2>
-            </div>
-            <div class="calculator-body">
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="display" readonly>
-                </div>
-                
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <button class="btn btn-secondary btn-calc w-100" onclick="clearDisplay()">C</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-secondary btn-calc w-100" onclick="backspace()">⌫</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('%')">%</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('/')">/</button>
-                    </div>
-                </div>
-                
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('7')">7</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('8')">8</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('9')">9</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('*')">×</button>
-                    </div>
-                </div>
-                
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('4')">4</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('5')">5</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('6')">6</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('-')">-</button>
-                    </div>
-                </div>
-                
-                <div class="row mb-2">
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('1')">1</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('2')">2</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('3')">3</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('+')">+</button>
-                    </div>
-                </div>
-                
-                <div class="row mb-2">
-                    <div class="col-6">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('0')">0</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('.')">.</button>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-equals btn-calc w-100" onclick="calculate()">=</button>
-                    </div>
-                </div>
-                
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.sin(')">sin</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.cos(')">cos</button>
-                    </div>
-                </div>
-                
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.tan(')">tan</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.sqrt(')">√</button>
-                    </div>
-                </div>
-                
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.log(')">log</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.PI')">π</button>
-                    </div>
-                </div>
-                
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('(')">(</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay(')')">)</button>
-                    </div>
-                </div>
-                
-                <div class="history-container mt-3" id="history">
-                    <div class="history-header p-2 bg-light border-bottom">Calculation History</div>
-                    <!-- History items will be added here -->
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <h1>👋 Hi, I'm Abdul Basit</h1>
+    <p class="lead">A passionate Software Developer exploring web, AI, and automation.</p>
+
+    <h2>🚀 Projects</h2>
+    <ul class="project-list">
+      <li><a href="https://example.com" target="_blank" onclick="trackClick('Portfolio')" class="d-flex align-items-center">
+        <span class="me-2">📁</span> Portfolio
+      </a></li>
+      <li><a href="https://example.com/studbot" target="_blank" onclick="trackClick('StudBot')" class="d-flex align-items-center">
+        <span class="me-2">🤖</span> StudBot
+      </a></li>
+      <li><a href="https://example.com/agri-aid" target="_blank" onclick="trackClick('AgriAid')" class="d-flex align-items-center">
+        <span class="me-2">🌱</span> Agri-Aid
+      </a></li>
+    </ul>
+
+    <h2>📬 Contact</h2>
+    <div class="contact-info">
+      <p><span class="me-2">✉️</span> Email: <a href="mailto:abdul@example.com">abdul@example.com</a></p>
+      <p><span class="me-2">💻</span> GitHub: <a href="https://github.com/yourgithub" target="_blank">yourgithub</a></p>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        let history = [];
-        
-        function appendToDisplay(value) {
-            const display = document.getElementById('display');
-            display.value += value;
-        }
-        
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-        
-        function backspace() {
-            const display = document.getElementById('display');
-            display.value = display.value.slice(0, -1);
-        }
-        
-        function calculate() {
-            const display = document.getElementById('display');
-            try {
-                const result = eval(display.value);
-                const calculation = `${display.value} = ${result}`;
-                
-                // Add to history
-                history.unshift(calculation);
-                if (history.length > 10) history.pop();
-                updateHistory();
-                
-                display.value = result;
-            } catch (error) {
-                display.value = 'Error';
-                setTimeout(() => clearDisplay(), 1000);
-            }
-        }
-        
-        function updateHistory() {
-            const historyContainer = document.getElementById('history');
-            // Clear existing history items (except the header)
-            while (historyContainer.children.length > 1) {
-                historyContainer.removeChild(historyContainer.lastChild);
-            }
-            
-            // Add history items
-            history.forEach(item => {
-                const historyItem = document.createElement('div');
-                historyItem.className = 'history-item';
-                historyItem.textContent = item;
-                historyItem.onclick = function() {
-                    document.getElementById('display').value = item.split(' = ')[0];
-                };
-                historyContainer.appendChild(historyItem);
-            });
-        }
-    </script>
+    <div id="visitor-info" class="mt-4"></div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function trackClick(linkName) {
+      gtag('event', 'click', {
+        event_category: 'Link Click',
+        event_label: linkName
+      });
+    }
+
+    // Detect Instagram referrer
+    const referrer = document.referrer || 'Unknown';
+    if (referrer.includes("instagram.com")) {
+      const msg = document.createElement('div');
+      msg.innerText = "User came from Instagram!";
+      msg.className = "alert alert-success mt-3";
+      document.querySelector('.container').appendChild(msg);
+    }
+
+    // IP Info Fetch + Send to Server
+    fetch('https://ipinfo.io/json?token=878ef54b65a0c8')
+      .then(res => res.json())
+      .then(data => {
+        const { ip, city, country } = data;
+
+        // Display on page
+        document.getElementById("visitor-info").innerText = `You are visiting from ${city}, ${country} | IP: ${ip}`;
+
+        // Send to server for logging
+        fetch('/log-visitor', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ip,
+            city,
+            country,
+            referrer
+          })
+        });
+      })
+      .catch(err => console.error("IP Info fetch error:", err));
+  </script>
 </body>
 </html>
