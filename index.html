@@ -1,71 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Linktree</title>
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPLH2FT7KH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-JPLH2FT7KH');
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Basit | Software Developer Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>in progress..</h1>
+  <header>
+    <div class="container">
+      <h1>Abdul Basit</h1>
+      <p>Software Developer | MERN Stack | AI/ML Enthusiast</p>
+    </div>
+  </header>
+
+  <nav class="container">
     <ul>
-      <li><a href="https://example.com" target="_blank" onclick="trackClick('Example Link')">Portfolio Link</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </div>
+  </nav>
 
-  <script>
-    function trackClick(linkName) {
-      gtag('event', 'click', {
-        event_category: 'Link Click',
-        event_label: linkName
-      });
-    }
+  <section id="projects" class="container">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>MedCare:</strong> Online healthcare system with appointment booking and ML-based disease prediction.</li>
+      <li><strong>STUDBOT:</strong> Note-generation platform from YouTube videos and PDFs using AI.</li>
+      <li><strong>Agri-Aid:</strong> AI-powered crop recommendation and price prediction platform for farmers.</li>
+    </ul>
+  </section>
 
-    if(document.referrer.includes("instagram.com")) {
-      const instaDiv = document.createElement('div');
-      instaDiv.style.marginTop = '20px';
-      instaDiv.style.fontSize = '12px';
-      instaDiv.style.color = 'green';
-      instaDiv.innerText = "You came from Instagram!";
-      document.body.appendChild(instaDiv);
-    }
+  <section id="experience" class="container">
+    <h2>Experience</h2>
+    <ul>
+      <li><strong>Web Developer Intern</strong> - SoftDigits (Jan 2023 - Apr 2023)</li>
+      <li><strong>AI/ML Intern</strong> - YBI Foundation (Jun 2024 - Jul 2024)</li>
+    </ul>
+  </section>
 
-    // IPInfo API Integration and send to server
-    fetch('https://ipinfo.io/json?token=878ef54b65a0c8')
-      .then(response => response.json())
-      .then(data => {
-        console.log("IP Info Data:", data);
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:abdulbasit@example.com">abdulbasit@example.com</a></p>
+    <p>GitHub: <a href="https://github.com/abdulbasit" target="_blank">github.com/abdulbasit</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/abdulbasit" target="_blank">linkedin.com/in/abdulbasit</a></p>
+  </section>
 
-        // Send this data to Express server
-        fetch('/log-visitor', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ip: data.ip,
-            city: data.city,
-            country: data.country,
-            referrer: document.referrer
-          })
-        });
-
-        // Show on page (optional)
-        const infoDiv = document.createElement('div');
-        infoDiv.style.marginTop = '10px';
-        infoDiv.style.fontSize = '12px';
-        infoDiv.style.color = 'blue';
-        infoDiv.innerText = `IP: ${data.ip}, City: ${data.city}, Country: ${data.country}`;
-        document.body.appendChild(infoDiv);
-      })
-      .catch(error => console.error('IP Info Error:', error));
-  </script>
+  <footer class="container">
+    <p>&copy; 2025 Abdul Basit. All rights reserved.</p>
+  </footer>
 </body>
 </html>
+
