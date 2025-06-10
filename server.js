@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "p")));
 app.use(express.json()); // to parse JSON POST body
 
 // Route for the main page
