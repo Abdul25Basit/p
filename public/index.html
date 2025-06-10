@@ -1,54 +1,261 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abdul Basit | Software Developer Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Calculator</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .calculator-container {
+            max-width: 400px;
+            margin: 50px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .calculator-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .calculator-body {
+            background-color: white;
+            padding: 20px;
+        }
+        .form-control {
+            height: 60px;
+            font-size: 24px;
+            text-align: right;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.25);
+        }
+        .btn-calc {
+            height: 60px;
+            font-size: 20px;
+            border-radius: 8px;
+            margin: 5px 0;
+            transition: all 0.2s;
+        }
+        .btn-operator {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .btn-equals {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+        }
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .history-item:hover {
+            background-color: #f8f9fa;
+        }
+        .history-container {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <header>
     <div class="container">
-      <h1>Abdul Basit</h1>
-      <p>Software Developer | MERN Stack | AI/ML Enthusiast</p>
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h2>Scientific Calculator</h2>
+            </div>
+            <div class="calculator-body">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="display" readonly>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <button class="btn btn-secondary btn-calc w-100" onclick="clearDisplay()">C</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary btn-calc w-100" onclick="backspace()">⌫</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('%')">%</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('/')">/</button>
+                    </div>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('7')">7</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('8')">8</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('9')">9</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('*')">×</button>
+                    </div>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('4')">4</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('5')">5</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('6')">6</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('-')">-</button>
+                    </div>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('1')">1</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('2')">2</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('3')">3</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-operator btn-calc w-100" onclick="appendToDisplay('+')">+</button>
+                    </div>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('0')">0</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-light btn-calc w-100" onclick="appendToDisplay('.')">.</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-equals btn-calc w-100" onclick="calculate()">=</button>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.sin(')">sin</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.cos(')">cos</button>
+                    </div>
+                </div>
+                
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.tan(')">tan</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.sqrt(')">√</button>
+                    </div>
+                </div>
+                
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.log(')">log</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('Math.PI')">π</button>
+                    </div>
+                </div>
+                
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay('(')">(</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-info btn-calc w-100" onclick="appendToDisplay(')')">)</button>
+                    </div>
+                </div>
+                
+                <div class="history-container mt-3" id="history">
+                    <div class="history-header p-2 bg-light border-bottom">Calculation History</div>
+                    <!-- History items will be added here -->
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <nav class="container">
-    <ul>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <section id="projects" class="container">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>MedCare:</strong> </li>
-      <li><strong>STUDBOT:</strong></li>
-      <li><strong>Agri-Aid:</strong> </li>
-    </ul>
-  </section>
-
-  <section id="experience" class="container">
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Web Developer Intern</strong> - SoftDigits (Jan 2023 - Apr 2023)</li>
-      <li><strong>AI/ML Intern</strong> - YBI Foundation (Jun 2024 - Jul 2024)</li>
-    </ul>
-  </section>
-
-  <section id="contact" class="container">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:abdulbasit@example.com">abdulbasit@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/abdulbasit" target="_blank">github.com/abdulbasit</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/abdulbasit" target="_blank">linkedin.com/in/abdulbasit</a></p>
-  </section>
-
-  <footer class="container">
-    <p>&copy; 2025 Abdul Basit. All rights reserved.</p>
-  </footer>
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let history = [];
+        
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            display.value += value;
+        }
+        
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+        
+        function backspace() {
+            const display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+        
+        function calculate() {
+            const display = document.getElementById('display');
+            try {
+                const result = eval(display.value);
+                const calculation = `${display.value} = ${result}`;
+                
+                // Add to history
+                history.unshift(calculation);
+                if (history.length > 10) history.pop();
+                updateHistory();
+                
+                display.value = result;
+            } catch (error) {
+                display.value = 'Error';
+                setTimeout(() => clearDisplay(), 1000);
+            }
+        }
+        
+        function updateHistory() {
+            const historyContainer = document.getElementById('history');
+            // Clear existing history items (except the header)
+            while (historyContainer.children.length > 1) {
+                historyContainer.removeChild(historyContainer.lastChild);
+            }
+            
+            // Add history items
+            history.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.textContent = item;
+                historyItem.onclick = function() {
+                    document.getElementById('display').value = item.split(' = ')[0];
+                };
+                historyContainer.appendChild(historyItem);
+            });
+        }
+    </script>
 </body>
 </html>
