@@ -1,8 +1,4 @@
-Save this in a file called railway.json to codify your deployments config.
 
-Format
-
-JSON
 
 {
   "$schema": "https://railway.com/railway.schema.json",
