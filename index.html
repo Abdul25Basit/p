@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Linktree</title>
+  <title>Linktree</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPLH2FT7KH"></script>
@@ -19,17 +19,49 @@
     <h1>in progress..</h1>
     <ul>
       <li><a href="https://example.com" target="_blank" onclick="trackClick('Example Link')">Portfolio Link</a></li>
-      
     </ul>
   </div>
 
   <script>
+    // Google Analytics Link Click Tracking
     function trackClick(linkName) {
       gtag('event', 'click', {
         event_category: 'Link Click',
         event_label: linkName
       });
     }
+
+    // Detect if Visitor Came from Instagram
+    if(document.referrer.includes("instagram.com")) {
+      console.log("Visitor came from Instagram!");
+
+      // Show message on page (optional)
+      const instaDiv = document.createElement('div');
+      instaDiv.style.marginTop = '20px';
+      instaDiv.style.fontSize = '12px';
+      instaDiv.style.color = 'green';
+      instaDiv.innerText = "You came from Instagram!";
+      document.body.appendChild(instaDiv);
+    } else {
+      console.log("Visitor came from:", document.referrer);
+    }
+
+    // IPInfo API Integration
+    fetch('https://ipinfo.io/json?token=878ef54b65a0c8')
+      .then(response => response.json())
+      .then(data => {
+        console.log("IP Info Data:", data);
+        
+        // Show location info on page (optional)
+        const infoDiv = document.createElement('div');
+        infoDiv.style.marginTop = '10px';
+        infoDiv.style.fontSize = '12px';
+        infoDiv.style.color = 'blue';
+        infoDiv.innerText = `IP: ${data.ip}, City: ${data.city}, Country: ${data.country}`;
+        document.body.appendChild(infoDiv);
+      })
+      .catch(error => console.error('IP Info Error:', error));
   </script>
 </body>
 </html>
+
